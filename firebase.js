@@ -1,11 +1,12 @@
 // Firebase Configuration (Replace with your own config)
 const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-    projectId: "YOUR_PROJECT_ID",
-    storageBucket: "YOUR_PROJECT_ID.appspot.com",
-    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-    appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyB4QBqZ55dXNEpBatRMeL_h1Bn9WuIySHc",
+  authDomain: "mediguide-web-90348.firebaseapp.com",
+  projectId: "mediguide-web-90348",
+  storageBucket: "mediguide-web-90348.firebasestorage.app",
+  messagingSenderId: "922161762882",
+  appId: "1:922161762882:web:e721d47591798e46df93db",
+  measurementId: "G-G05LL8392C"
 };
 
 // Initialize Firebase
