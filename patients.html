@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Patients - MediGuide Web</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
 </head>
 <body>
 
@@ -24,8 +23,7 @@
         </ul>
     </nav>
 
-    <h2 style="text-align: center; margin-top: 20px;">Patients List</h2>
-
+    <h2>Patients List</h2>
     <table>
         <thead>
             <tr>
@@ -39,40 +37,45 @@
         <tbody id="patientTableBody"></tbody>
     </table>
 
+    <script src="firebase-config.js"></script>
     <script>
         function loadPatients() {
-            let patients = JSON.parse(localStorage.getItem("patients")) || [];
-            let patientTable = document.getElementById("patientTableBody");
-    
-            // Clear table before adding rows
-            patientTable.innerHTML = "";
-    
-            // Sort patients by date (oldest to newest)
-            patients.sort((a, b) => new Date(a.date) - new Date(b.date));
-    
-            patients.forEach((patient, index) => {
-                let row = document.createElement("tr");
-                row.innerHTML = `
-                    <td>${patient.name}</td>
-                    <td>${patient.age}</td>
-                    <td>${patient.date}</td>
-                    <td>${patient.illness}</td>
-                    <td><button onclick="removePatient(${index})">Remove</button></td>
-                `;
-                patientTable.appendChild(row);
+            firebase.database().ref("patients").once("value", (snapshot) => {
+                let tableBody = document.getElementById("patientTableBody");
+                tableBody.innerHTML = "";
+
+                let patients = [];
+                snapshot.forEach(childSnapshot => {
+                    let data = childSnapshot.val();
+                    data.key = childSnapshot.key;
+                    patients.push(data);
+                });
+
+                patients.sort((a, b) => new Date(a.date) - new Date(b.date));
+
+                patients.forEach((patient) => {
+                    let row = document.createElement("tr");
+                    row.innerHTML = `
+                        <td>${patient.name}</td>
+                        <td>${patient.age}</td>
+                        <td>${patient.date}</td>
+                        <td>${patient.illness}</td>
+                        <td><button onclick="removePatient('${patient.key}')">Remove</button></td>
+                    `;
+                    tableBody.appendChild(row);
+                });
             });
         }
-    
-        function removePatient(index) {
-            let patients = JSON.parse(localStorage.getItem("patients")) || [];
-            patients.splice(index, 1);
-            localStorage.setItem("patients", JSON.stringify(patients));
+
+        function removePatient(key) {
+            firebase.database().ref("patients/" + key).remove();
             loadPatients();
         }
-    
-        // Load patients when the page loads
+
         document.addEventListener("DOMContentLoaded", loadPatients);
     </script>
-    
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"></script>
+<script src="firebase-config.js"></script>
 </body>
 </html>
