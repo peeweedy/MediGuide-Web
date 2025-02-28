@@ -1,31 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MediGuide Web</title>
-  <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediGuide Web</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-  <!-- Navbar -->
-  <nav>
-    <input type="checkbox" id="check">
-    <label for="check" class="checkbtn">
-      <i class="fas fa-bars"></i>
-    </label>
-    <label class="logo">MediGuide Web</label>
-    <ul>
-      <li><a class="active" href="index.html">Home</a></li>
-      <li><a href="add_patient.html">Add Patient</a></li>
-      <li><a href="patients.html">Patients</a></li>
-      <li><a href="search.html">Search</a></li>
-    </ul>
-  </nav>
+    <!-- Navbar -->
+    <nav>
+        <input type="checkbox" id="check">
+        <label for="check" class="checkbtn">
+            <i class="fas fa-bars"></i>
+        </label>
+        <label class="logo">MediGuide Web</label>
+        <ul>
+            <li><a class="active" href="index.html">Home</a></li>
+            <li><a href="add_patient.html">Add Patient</a></li>
+            <li><a href="patients.html">Patients</a></li>
+            <li><a href="search.html">Search</a></li>
+        </ul>
+    </nav>
 
-  <!-- Section with background -->
-  <section></section>
-
+    <section>
+        <h1>Welcome to MediGuide Web</h1>
+        <p>A system for managing patient records efficiently.</p>
+    </section>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"></script>
+    <script src="firebase-config.js"></script>
 </body>
 </html>
