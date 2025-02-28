@@ -153,4 +153,30 @@ document.addEventListener("DOMContentLoaded", function () {
 
     displayAllPatients(); // Show all patients on page load
 });
+// Reference Firestore collection
+const patientTable = document.getElementById("patientTable");
+
+function loadPatients() {
+    db.collection("patients").orderBy("date", "asc").get()
+    .then((querySnapshot) => {
+        patientTable.innerHTML = ""; // Clear the table before adding new data
+        querySnapshot.forEach((doc) => {
+            let data = doc.data();
+            let row = `<tr>
+                <td>${data.name}</td>
+                <td>${data.age}</td>
+                <td>${data.date}</td>
+                <td>${data.illness}</td>
+                <td><button class="remove-btn" onclick="removePatient('${doc.id}')">Remove</button></td>
+            </tr>`;
+            patientTable.innerHTML += row;
+        });
+    })
+    .catch((error) => {
+        console.error("Error fetching patients:", error);
+    });
+}
+
+// Load patients when the page loads
+window.onload = loadPatients;
 
