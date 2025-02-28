@@ -16,6 +16,36 @@ const firebaseConfig = {
   measurementId: "G-G05LL8392C"
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+const db = getDatabase(app);
+const patientsRef = ref(db, "patients");
+
+
+// Add Patient
+document.getElementById("patientForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+    let name = document.getElementById("name").value;
+    let age = document.getElementById("age").value;
+    let date = document.getElementById("date").value;
+    let illness = document.getElementById("illness").value;
+
+    push(patientsRef, { name, age, date, illness });
+    alert("Patient added successfully!");
+    document.getElementById("patientForm").reset();
+});
+
+// Fetch and Display Patients
+onValue(patientsRef, (snapshot) => {
+    let table = document.getElementById("patientTable");
+    table.innerHTML = "";
+    snapshot.forEach((childSnapshot) => {
+        let patient = childSnapshot.val();
+        let row = `<tr>
+            <td>${patient.name}</td>
+            <td>${patient.age}</td>
+            <td>${patient.date}</td>
+            <td>${patient.illness}</td>
+        </tr>`;
+        table.innerHTML += row;
+    });
+});

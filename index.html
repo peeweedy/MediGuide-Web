@@ -3,32 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MediGuide Web</title>
+    <title>Home - MediGuide Web</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
 </head>
 <body>
 
-    <!-- Navbar -->
     <nav>
         <input type="checkbox" id="check">
-        <label for="check" class="checkbtn">
-            <i class="fas fa-bars"></i>
-        </label>
+        <label for="check" class="checkbtn">&#9776;</label> <!-- III Menu Icon -->
         <label class="logo">MediGuide Web</label>
         <ul>
-            <li><a class="active" href="index.html">Home</a></li>
-            <li><a href="add_patient.html">Add Patient</a></li>
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="add-patient.html">Add Patient</a></li>
             <li><a href="patients.html">Patients</a></li>
             <li><a href="search.html">Search</a></li>
         </ul>
     </nav>
 
+  
+
     <section>
-        <h1>Welcome to MediGuide Web</h1>
-        <p>A system for managing patient records efficiently.</p>
+        <h1 style="text-align: center; padding-top: 50px;">Welcome to MediGuide Web</h1>
     </section>
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"></script>
-    <script src="firebase-config.js"></script>
+
 </body>
 </html>

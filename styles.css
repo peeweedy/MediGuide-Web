@@ -1,3 +1,4 @@
+/* Google Fonts Link */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 * {
@@ -11,12 +12,18 @@
 body {
   font-family: "Montserrat", sans-serif;
   background-color: #f4f4f4;
+  padding-top: 80px; /* Prevents content from being hidden under the navbar */
 }
 
+/* ✅ Restored Original Navbar */
 nav {
   background: #0082e6;
   height: 80px;
   width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
 }
 
 label.logo {
@@ -52,6 +59,7 @@ a:hover {
   transition: .5s;
 }
 
+/* ✅ Hamburger Menu (III) */
 .checkbtn {
   font-size: 22px;
   color: white;
@@ -66,93 +74,17 @@ a:hover {
   display: none;
 }
 
-/* Fix for Add Patient & Search Pages */
-.form-container {
-  width: 90%;
-  max-width: 400px;
-  background: white;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-  margin: 20px auto;
+/* ✅ Navbar for Small Screens */
+@media (max-width: 1050px) {
+  label.logo {
+    padding-left: 30px;
+  }
+
+  nav ul li a {
+    font-size: 16px;
+  }
 }
 
-.form-container label {
-  font-weight: bold;
-  display: block;
-  margin-bottom: 5px;
-}
-
-.form-container input {
-  width: 100%;
-  padding: 8px;
-  margin-bottom: 15px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-.form-container button {
-  width: 100%;
-  padding: 10px;
-  background: #0082e6;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-.form-container button:hover {
-  background: #005bb5;
-}
-
-/* Search Page */
-.search-container {
-  width: 90%;
-  max-width: 400px;
-  background: white;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-  margin: 20px auto;
-  text-align: center;
-}
-
-.search-container input {
-  width: 100%;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 16px;
-}
-
-/* Patient List */
-.patient-list {
-  width: 90%;
-  max-width: 600px;
-  background: white;
-  padding: 15px;
-  border-radius: 8px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-  margin: 20px auto;
-}
-
-.patient-list li {
-  padding: 10px;
-  border-bottom: 1px solid #ccc;
-}
-
-.patient-list li a {
-  text-decoration: none;
-  color: #0082e6;
-  font-weight: bold;
-}
-
-.patient-list li a:hover {
-  text-decoration: underline;
-}
-
-/* Responsive Design */
 @media (max-width: 890px) {
   .checkbtn {
     display: block;
@@ -179,90 +111,145 @@ a:hover {
     line-height: 30px;
   }
 
+  nav ul li a {
+    font-size: 20px;
+  }
+
   a:hover,
   a.active {
     background: none;
     color: #0082e6;
   }
 
-  #check:checked~ul {
+  /* ✅ Navbar appears when the checkbox is checked */
+  #check:checked ~ ul {
     left: 0;
   }
 }
-.form-container select {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
-    background: white;
-    cursor: pointer;
-  }
 
-  .table-container {
-    width: 80%;
-    margin: 20px auto;
-    overflow-x: auto;
+/* ✅ Centered Search Section */
+.search-container {
+  width: 90%;
+  max-width: 500px;
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  margin: 100px auto 20px auto; /* Centered */
+  text-align: center;
+}
+
+.search-container h2 {
+  margin-bottom: 15px;
+  font-size: 22px;
+  color: #333;
+}
+
+.search-container input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  text-align: center;
+}
+
+/* ✅ Form Styling (Add Patient) */
+.form-container {
+  width: 90%;
+  max-width: 400px;
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  margin: 20px auto;
+}
+
+.form-container label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-container input, .form-container select {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.form-container button {
+  width: 100%;
+  padding: 10px;
+  background: #0082e6;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.form-container button:hover {
+  background: #005bb5;
+}
+
+/* ✅ Table Styling (Patient List + Search) */
+.table-container {
+  width: 80%;
+  margin: 20px auto;
+  overflow-x: auto;
 }
 
 table {
-    width: 100%;
-    border-collapse: collapse;
+  width: 100%;
+  border-collapse: collapse;
 }
 
 th, td {
-    border: 1px solid #ddd;
-    padding: 10px;
-    text-align: center;
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
 }
 
 th {
-    background-color: #0082e6;
-    color: white;
+  background-color: #0082e6;
+  color: white;
+}
+
+/* ✅ Buttons (View & Remove) */
+.action-buttons {
+  display: flex;
+  justify-content: space-around;
+  gap: 5px;
 }
 
 .view-btn {
-    background-color: #1b9bff;
-    color: white;
-    padding: 5px 10px;
-    text-decoration: none;
-    border-radius: 5px;
+  background-color: #0082e6;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 3px;
+  text-decoration: none;
+  font-size: 14px;
+  transition: background 0.3s ease;
 }
 
 .view-btn:hover {
-    background-color: #0056b3;
-}.action-buttons {
-    display: flex;
-    justify-content: space-around;
-    gap: 5px;
-}
-
-.view-btn {
-    background-color: #0082e6; /* Blue */
-    color: white;
-    padding: 5px 10px;
-    border-radius: 3px;
-    text-decoration: none;
-    font-size: 14px;
-    transition: background 0.3s ease;
-}
-
-.view-btn:hover {
-    background-color: #005bb5; /* Darker blue */
+  background-color: #005bb5;
 }
 
 .remove-btn {
-    background-color: #ff4d4d;  /* Soft red */
-    color: white;
-    padding: 5px 10px;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: background 0.3s ease;
+  background-color: #ff4d4d;
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.3s ease;
 }
 
 .remove-btn:hover {
-    background-color: #cc0000; /* Darker red */
+  background-color: #cc0000;
 }

@@ -3,77 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Search Patients - MediGuide Web</title>
+    <title>Search - MediGuide Web</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+    <script defer src="firebase.js"></script>
 </head>
 <body>
 
-    <!-- Navbar -->
-    <nav>
-        <input type="checkbox" id="check">
-        <label for="check" class="checkbtn">
-            <i class="fas fa-bars"></i>
-        </label>
-        <label class="logo">MediGuide Web</label>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="add_patient.html">Add Patient</a></li>
-            <li><a href="patients.html">Patients</a></li>
-            <li><a class="active" href="search.html">Search</a></li>
-        </ul>
-    </nav>
+  <!-- Navbar -->
+  <nav>
+    <input type="checkbox" id="check">
+    <label for="check" class="checkbtn">&#9776;</label> <!-- III Menu Icon -->
+    <label class="logo">MediGuide Web</label>
+    <ul>
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="add-patient.html">Add Patient</a></li>
+        <li><a href="patients.html">Patients</a></li>
+        <li><a href="search.html">Search</a></li>
+    </ul>
+</nav>
 
-    <h2 style="text-align: center; margin-top: 20px;">Search Patients</h2>
 
     <div class="search-container">
-        <input type="text" id="searchInput" placeholder="Enter patient name..." onkeyup="searchPatients()">
+        <h2>Search Patients</h2>
+        <input type="text" id="searchInput" placeholder="Enter patient name..." onkeyup="searchPatient()">
     </div>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Age</th>
-                <th>Date</th>
-                <th>Illness</th>
-            </tr>
-        </thead>
-        <tbody id="searchResults"></tbody>
-    </table>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Date</th>
+                    <th>Illness</th>
+                </tr>
+            </thead>
+            <tbody id="searchResults"></tbody>
+        </table>
+    </div>
 
-    <script>
-        function searchPatients() {
-            let query = document.getElementById("searchInput").value.toLowerCase().trim();
-            let patients = JSON.parse(localStorage.getItem("patients")) || [];
-            let resultsBody = document.getElementById("searchResults");
-    
-            resultsBody.innerHTML = "";
-    
-            // Filter by name and sort by date (oldest to newest)
-            let filteredPatients = patients
-                .filter(patient => patient.name.toLowerCase().includes(query))
-                .sort((a, b) => new Date(a.date) - new Date(b.date));
-    
-            if (filteredPatients.length === 0) {
-                resultsBody.innerHTML = "<tr><td colspan='4' style='text-align:center;'>No results found.</td></tr>";
-            } else {
-                filteredPatients.forEach(patient => {
-                    let row = document.createElement("tr");
-                    row.innerHTML = `
-                        <td>${patient.name}</td>
-                        <td>${patient.age}</td>
-                        <td>${patient.date}</td>
-                        <td>${patient.illness}</td>
-                    `;
-                    resultsBody.appendChild(row);
-                });
-            }
-        }
-    </script>
-    
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"></script>
-    <script src="firebase-config.js"></script>
 </body>
 </html>
